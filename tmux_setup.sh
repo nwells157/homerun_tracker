@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SESH="Homerun_Project"
+SESH="homerun_project"
 
 if tmux has-session -t "$SESH" 2>/dev/null; then
     echo "Reattaching to existing tmux session: $SESH"
