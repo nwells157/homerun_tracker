@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Homerun Fantasy Baseball</title>
+  <title>Homerun Fantasy Baseball - Players</title>
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css" />
@@ -26,11 +26,17 @@
 
   <main>
     <section>
-      <h2>About</h2>
-      <p id='intro_text'>This is a basic website for displaying MLB Homerun Tracking.</p>
-    </section>
-
-    <section>
+      <h2>Players</h2>
+      <table id="players-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Position</th>
+          </tr>
+        </thead>
+        <tbody id="players-table-body"></tbody>
+      </table>
     </section>
   </main>
 

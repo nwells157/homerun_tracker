@@ -26,20 +26,31 @@
 
   <main>
     <section>
-      <h2>About</h2>
-      <p id='intro_text'>This is a basic website for displaying MLB Homerun Tracking.</p>
-    </section>
+      <body>Team Information</body>
 
-    <section>
-    </section>
-  </main>
+      <button id="loadTeam">Load Team</button>
+      <pre id="output"></pre>
 
-  <footer>
-    <p>© 2025 My Website. All rights reserved.</p>
-  </footer>
+      <script>
+        document.getElementById("loadTeam").addEventListener("click", async () => {
+          const res  = await fetch("/api/team");
+          const team = await res.json();
 
-  <!-- JavaScript -->
-  <script src="js/script.js"></script>
+          document.getElementById("output").textContent =
+            JSON.stringify(team);
+
+        });
+      </script>
+
+          </section>
+        </main>
+
+        <footer>
+          <p>© 2025 My Website. All rights reserved.</p>
+        </footer>
+
+        <!-- JavaScript -->
+        <script src="js/script.js"></script>
 </body>
 
 </html>
