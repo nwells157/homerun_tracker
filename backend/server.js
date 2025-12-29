@@ -1,6 +1,7 @@
-const express = require("express");
-const pool = require("./db");
-const importPlayers = require("./importPlayers");
+const express           = require("express");
+const pool              = require("./db");
+const importPlayers     = require("./importPlayers");
+const updatePlayerStats = require("./updatePlayerStats")
 
 const app = express();
 const port = 8000;
@@ -28,9 +29,28 @@ app.get("/api/players", async (req, res) => {
   }
 });
 
+app.get("/api/leaderboard", async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT player_id, full_name, homeRuns FROM players ORDER BY homeRuns DESC NULLS LAST LIMIT 100;"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Database query failed");
+  }
+});
+
 app.get("/api/import-players", async (req, res) => {
   console.log("Get import-players called");
   await importPlayers();
+
+  res.send("ok");
+});
+
+app.get("/api/update-player-stats", async (req, res) => {
+  console.log("Get update-player-stats called");
+  await updatePlayerStats();
 
   res.send("ok");
 });
