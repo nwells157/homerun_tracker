@@ -26,31 +26,17 @@
 
   <main>
     <section>
-      <body>Team Information</body>
+      <h2>Team Rosters</h2>
+      <div id="team-rosters"></div>
+    </section>
+  </main>
 
-      <button id="loadTeam">Load Team</button>
-      <pre id="output"></pre>
+  <footer>
+    <p>© 2025 My Website. All rights reserved.</p>
+  </footer>
 
-      <script>
-        document.getElementById("loadTeam").addEventListener("click", async () => {
-          const res  = await fetch("/api/team");
-          const team = await res.json();
-
-          document.getElementById("output").textContent =
-            JSON.stringify(team);
-
-        });
-      </script>
-
-          </section>
-        </main>
-
-        <footer>
-          <p>© 2025 My Website. All rights reserved.</p>
-        </footer>
-
-        <!-- JavaScript -->
-        <script src="js/script.js"></script>
+  <!-- JavaScript -->
+  <script src="js/script.js"></script>
 </body>
 
 </html>

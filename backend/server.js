@@ -41,6 +41,26 @@ app.get("/api/leaderboard", async (req, res) => {
   }
 });
 
+app.get("/api/team-roster", async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT t.team_id,
+              t.team_name,
+              p.player_id,
+              p.full_name,
+              p.homeRuns
+       FROM team_roster tr
+       JOIN teams t ON tr.team_id = t.team_id
+       JOIN players p ON tr.player_id = p.player_id
+       ORDER BY t.team_name, p.full_name;`
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Database query failed");
+  }
+});
+
 app.get("/api/import-players", async (req, res) => {
   console.log("Get import-players called");
   await importPlayers();
